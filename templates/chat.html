@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto h-full flex flex-col bg-white shadow-xl border-x border-slate-100">
+    
+    <div id="chat-container" class="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/50">
+        
+        <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 text-xs font-bold shrink-0">
+                AI
+            </div>
+            <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 max-w-[80%]">
+                <p class="text-sm leading-relaxed text-slate-700">
+                    Hello. I'm MindEase. I'm here to listen without judgment. How are you feeling right now?
+                </p>
+            </div>
+        </div>
+
+        </div>
+
+    <div class="p-4 bg-white border-t border-slate-100">
+        <form class="relative flex gap-2"
+      hx-post="{% url 'chat' %}" 
+      hx-target="#chat-container" 
+      hx-swap="beforeend"
+      hx-on::after-request="this.reset()">
+      
+    {% csrf_token %}
+    
+    <input type="text" 
+           name="message" 
+           placeholder="Type how you feel..." 
+           class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+           autocomplete="off"
+           required
+    >
+    
+    <button type="submit" 
+            class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-xl text-sm font-medium transition-colors shadow-sm">
+        Send
+    </button>
+</form>
+        <div class="text-center mt-2">
+            <span class="text-[10px] text-slate-400">
+                AI can make mistakes. If you are in crisis, please call emergency services.
+            </span>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

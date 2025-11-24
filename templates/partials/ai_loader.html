@@ -1,0 +1,16 @@
+<div class="flex gap-4 fade-in">
+    
+    <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 text-xs font-bold shrink-0">
+        AI
+    </div>
+
+    <div class="p-4 rounded-2xl rounded-tl-none bg-white border border-slate-100 text-slate-700 max-w-[80%] shadow-sm">
+        
+        <span hx-ext="sse" 
+              sse-connect="{% url 'stream_response' conversation_id %}?text={{ user_text }}" 
+              sse-swap="message"
+              class="typing-cursor">
+            Thinking...
+        </span>
+    </div>
+</div>

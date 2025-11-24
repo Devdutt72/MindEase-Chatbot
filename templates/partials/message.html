@@ -1,0 +1,25 @@
+<div class="flex gap-4 {% if message.sender == 'user' %}justify-end{% endif %} fade-in">
+    
+    {% if message.sender == 'ai' %}
+    <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 text-xs font-bold shrink-0">
+        AI
+    </div>
+    {% endif %}
+
+    <div class="p-4 rounded-2xl shadow-sm border max-w-[80%] 
+        {% if message.sender == 'user' %}
+            bg-blue-600 text-white rounded-tr-none border-blue-600
+        {% else %}
+            bg-white text-slate-700 rounded-tl-none border-slate-100
+        {% endif %}">
+        
+        <p class="text-sm leading-relaxed whitespace-pre-wrap">{{ message.content }}</p>
+    </div>
+
+    {% if message.sender == 'user' %}
+    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xs font-bold shrink-0">
+        ME
+    </div>
+    {% endif %}
+    
+</div>
